@@ -4,18 +4,22 @@ const toDoForm = document.querySelector(".js-toDoForm"),
 
 const TODOS_LS = 'toDos';
 
-function filterFn(toDo){
-//filter create array (함수가 true를 return하는 item이 있는)
+/**function filterFn(toDo){
+filter create array (함수가 true를 return하는 item이 있는)
     return toDo.id === 1; // id 1일 경우에만 ture return
-}
+}**/
 
-const toDos = [];
+let toDos = [];
 
 function deleteToDo(event){
     const btn = event.target;
     const li = btn.parentNode;
     toDoList.removeChild(li);
-    const cleanToDos = toDos.filter(filterFn);
+    const cleanToDos = toDos.filter(function(toDo){
+        return toDo.id !== parseInt(li.id);
+    });
+    toDos = cleanToDos;
+    saveToDos();
 }
 
 function saveToDos(){
